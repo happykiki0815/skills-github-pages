@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCoach 羽球預約與管理系統</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #0d9488;
+            --bg: #f8fafc;
+            --text: #1e293b;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        .btn {
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .btn:hover { background-color: #0f766e; }
+        .notice {
+            background-color: #fef3c7;
+            border-left: 4px solid #d97706;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: #e2e8f0;
+        }
+        .status-pending { background-color: #fed7aa; color: #ea580c; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🏸 SmartCoach 羽球自動化預約系統</h1>
+        <p>專業教練課程與場地預約平台</p>
+    </header>
+
+    <div class="container">
+        <div class="grid">
+            <div class="card">
+                <h2>預約球場與教練</h2>
+                <form id="bookingForm" onsubmit="handleBooking(event)">
+                    <div class="form-group">
+                        <label>學員姓名</label>
+                        <input type="text" placeholder="請輸入您的姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <label>選擇時段</label>
+                        <input type="text" placeholder="例如：週六 14:00-16:00 (可自訂時間)" required>
+                    </div>
+                    <div class="form-group">
+                        <label>選擇場地/教練</label>
+                        <select>
+                            <option>A 場地 - 專業羽球專用球場</option>
+                            <option>B 場地 - 專業羽球專用球場</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">送出預約申請</button>
+                </form>
+                <div class="notice">
+                    ⚠️ <strong>注意事項：</strong>註冊與預約完成後，請於 <strong>10 分鐘內繳費完成</strong>，否則系統將自動取消預約並重新釋出場地。
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>教練後台管理模擬</h2>
+                <div style="margin-bottom: 20px;">
+                    <p><strong>最新預約審核：</strong></p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: #f1f5f9; padding: 10px; border-radius: 6px;">
+                        <span>王小明 (已預約 A 場地)</span>
+                        <span class="status-badge status-pending">待審核/未繳費</span>
+                    </div>
+                    <p style="font-size: 13px; color: #64748b;">* 系統擁有「會員審核機制」，確認租場人員是否為本人。</p>
+                </div>
+
+                <div>
+                    <p><strong>管理員手動調整場地：</strong></p>
+                    <button class="btn" style="background-color: var(--primary);" onclick="alert('提示：管理員手動調整場地的功能，將在學生「已繳費」後開放，以避免浪費電源與空調。')">調整場地位置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleBooking(e) {
+            e.preventDefault();
+            alert('【預約成功！】\n您的預約已進入審核機制，請於 10 分鐘內完成場地費繳納。後續串接資料庫後，將會即時更新至後台！');
+        }
+    </script>
+</body>
+</html>
